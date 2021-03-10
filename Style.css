@@ -1,0 +1,691 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* border: 1px solid rgb(41, 41, 41); */
+}
+
+::selection {
+    background-color: rgb(var(--primery));
+    color: rgb(var(--bg));
+}
+
+body {
+    /* variable */
+    --primery: 1, 161, 161;
+    /* Background */
+    --bg: 239, 239, 242;
+    /* characters */
+    --ch1: 126, 216, 118;
+    /* Character-1  Bulbasour Color*/
+    --ch2: 99, 219, 243;
+    /* Character-2  Squirtle Color */
+    --ch3: 243, 118, 0;
+    /* Character-3  Charmander Color*/
+    --ch4: 255, 213, 6;
+    /* Character-4  Pickachu Color */
+    background: rgb(var(--bg));
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: 5px;
+}
+
+/* Loading Screen  */
+
+.loader {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    background: rgb(var(--primery));
+    z-index: 1000;
+    animation: loader 3s cubic-bezier(0.77, 0.01, 0.08, 1.63);
+    opacity: 0;
+    display: flex;
+    visibility: hidden;
+}
+
+.loader article {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: auto;
+    height: 100%;
+    width: 100%;
+}
+
+/* Bounce animation */
+
+.u-bounce {
+    animation: bounce 600ms infinite;
+    animation-timing-function: cubic-bezier(0.25, 0.53, 0.29, 0.6);
+    margin: auto;
+}
+
+/* Pokeball Structure */
+
+.o-pokeball {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: solid 4px black;
+    position: relative;
+    background: linear-gradient(to bottom, #eeeeee 0%, #ffffff 100%);
+}
+
+.o-pokeball:before, .o-pokeball:after {
+    content: "";
+    display: block;
+    z-index: 11111;
+}
+
+.o-pokeball, .o-pokeball:before, .o-pokeball:after {
+    transition: all 600ms cubic-bezier(0.25, 0.53, 0.29, 0.6);
+}
+
+.o-pokeball:before {
+    height: 48px;
+    border-bottom: solid 4px black;
+    border-radius: 50px 50px 0 0;
+    background: linear-gradient(to bottom, #d10000 0%, #ff0000 50%);
+}
+
+.o-pokeball:after {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(to bottom, #fff 0%, #ccc 100%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px black, 0 0 0 4px #ddd, 0 0 0 7px black, 0 0 10px 8px rgba(0, 0, 0, 0.4);
+}
+
+header {
+    font-family: 'Poppins', sans-serif;
+    font-size: 64px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-shadow: 2px 2px 4px #EFEFF250, 0 0 0 rgb(var(--primery));
+    padding: 15px;
+    height: 15%;
+    animation: load-up 3s cubic-bezier(0.25, 0.1, 0.93, 2.03);
+}
+
+header div {
+    padding: auto;
+}
+
+/* scroll bar and scrollable galary */
+
+.scroll-bars {
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    animation: load-down 3s cubic-bezier(0.25, 0.1, 0.93, 2.03);
+}
+
+.scroll-bars::-webkit-scrollbar {
+    width: 10px;
+    height: 9px;
+}
+
+.scroll-bars::-webkit-scrollbar-thumb {
+    background: rgb(var(--primery));
+    border-radius: 10px;
+    width: 20px;
+}
+
+.scroll-bars::-webkit-scrollbar-track {
+    margin: 0px 250px 0px 250px;
+    box-shadow: inset 1px 1px 10px #a5a5a5;
+    border-radius: 5px;
+}
+
+/* card's container space  */
+
+.cards-cover {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    width: auto;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* end wall of gallery */
+
+.wall {
+    height: 200px;
+    width: 10px;
+    min-width: 10px;
+    border-radius: 6px;
+    background: rgb(var(--primery));
+    margin: auto 30px auto 30px;
+}
+
+.left .wall {
+    align-self: flex-start;
+}
+
+.right .wall {
+    align-self: flex-end;
+}
+
+/* cards */
+
+.cards {
+    height: 450px;
+    width: 300px;
+    margin: auto 50px auto 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    border-radius: 40px;
+    box-shadow: 8px 8px 20px #AEAEC040, -8px -8px 20px #ffffff;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+/* cards section 1 */
+
+.cards .image {
+    height: 45%;
+    position: relative;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+    animation: image-down-to-up 2s cubic-bezier(0.16, 0.02, 0.26, 0.97);
+    z-index: 1;
+}
+
+/* round progress bar*/
+
+.cards .image .r-bar {
+    height: 165px;
+    width: 165px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: rgb(var(--bg));
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    box-shadow: 8px 8px 20px #AEAEC040, -8px -8px 20px #ffffff;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+.image .r-bar svg {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    fill: transparent;
+    stroke: rgb(var(--primery));
+    stroke-width: 5%;
+    stroke-linecap: round;
+    stroke-dasharray: 447;
+    stroke-dashoffset: calc(447 - (447*65)/100);
+    transition: width 2s, height 2s, position 2s, transform 2s;
+    transform: rotate(450deg);
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+.cards .image .r-bar svg:nth-child(1) {
+    position: absolute;
+    z-index: 10;
+    top: 4px;
+    left: 4px;
+    filter: blur(1px);
+    stroke: rgb(var(--bg));
+    opacity: 30%;
+}
+
+.card-1 .image .r-bar svg:nth-child(2) {
+    stroke: rgb(var(--ch1));
+}
+
+.card-2 .image .r-bar svg:nth-child(2) {
+    stroke: rgb(var(--ch2));
+}
+
+.card-3 .image .r-bar svg:nth-child(2) {
+    stroke: rgb(var(--ch3));
+}
+
+.card-4 .image .r-bar svg:nth-child(2) {
+    stroke: rgb(var(--ch4));
+}
+
+/* Image in Progress bar */
+
+.cards .image img {
+    height: 165px;
+    width: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(center, center);
+    transition: width 2s, height 2s, position 2s, transform 2s;
+    animation: size-big-to-small 2s cubic-bezier(0.61, 0.58, 0.79, 1.54);
+}
+
+.cards.card-1 .image img {
+    transform: translate(-40%, -50%);
+    height: 170px;
+    width: auto;
+}
+
+.cards.card-2 .image img {
+    transform: translate(-50%, -50%);
+    height: 160px;
+    width: auto;
+}
+
+.cards.card-3 .image img {
+    transform: translate(-47%, -49%);
+    height: 170;
+    width: auto;
+}
+
+.cards.card-4 .image img {
+    transform: translate(-43%, -53%);
+    height: 170px;
+    width: auto;
+}
+
+/* character information section (section 2) */
+
+.char-info {
+    height: 55%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    animation: char-info-up-to-down 2s cubic-bezier(0.16, 0.02, 0.26, 0.97);
+    z-index: 10;
+    width: 100%;
+}
+
+.char-info .name {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 36px;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+.char-info .name .genre {
+    font-family: Montserrat;
+    font-weight: normal;
+    line-height: 16px;
+    font-size: 14px;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+.char-info .powerbars .pb-con {
+    font-family: Montserrat;
+    font-weight: normal;
+    font-size: 18px;
+    margin-top: 5px;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+.char-info .powerbars .pb-con .bar {
+    height: 10px;
+    width: 150px;
+    align-self: center;
+    background-color: #EEEEEE;
+    border: 2px solid #F0F0F3;
+    box-shadow: 1px 1px 3px #AEAEC040, -1px -1px 3px #ffffff;
+    box-shadow: inset 1px 1px 3px #AEAEC040, -1px -1px 3px #ffffff;
+    border-radius: 12px;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+.card-1 .char-info .powerbars .pb-con .bar .bar-ch1 {
+    border-radius: 6px;
+    background-color: rgb(var(--ch1));
+    height: 100%;
+}
+
+.card-2 .char-info .powerbars .pb-con .bar .bar-ch1 {
+    border-radius: 6px;
+    background-color: rgb(var(--ch2));
+    height: 100%;
+}
+
+.card-3 .char-info .powerbars .pb-con .bar .bar-ch1 {
+    border-radius: 6px;
+    background-color: rgb(var(--ch3));
+    height: 100%;
+}
+
+.card-4 .char-info .powerbars .pb-con .bar .bar-ch1 {
+    border-radius: 6px;
+    background-color: rgb(var(--ch4));
+    height: 100%;
+}
+
+/* CTA (linker) css */
+
+.linker {
+    position: fixed;
+    top: 90%;
+    left: 93%;
+    height: 50px;
+    width: 50px;
+    background: rgb(var(--primery));
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 5px 5px 20px #00000052;
+    animation: loader-cta 3s cubic-bezier(0.49, 0.71, 0.92, 1.2);
+}
+
+.linker b {
+    z-index: 50;
+    border-radius: 50%;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    background: rgb(var(--primery));
+    align-self: center;
+    justify-self: center;
+}
+
+.linker input {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 50px;
+    width: 50px;
+    opacity: 0;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.linker button {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: rgb(var(--primery));
+    border: 0px;
+    transition: all 400ms cubic-bezier(0.44, 0.57, 0.4, 1.2);
+}
+
+.linker button svg {
+    fill: #fff;
+    padding-top: 5px;
+}
+
+#checkbox:checked~.bt-1 {
+    transform: translate(-75px, 0px);
+    box-shadow: 2px 2px 20px #00000052;
+}
+
+#checkbox:checked~.bt-2 {
+    transform: translate(-65px, -65px);
+    box-shadow: 5px 5px 20px #00000052;
+}
+
+#checkbox:checked~.bt-3 {
+    transform: translate(0px, -75px);
+    box-shadow: 5px 5px 20px #00000052;
+}
+
+/* on focus css */
+
+/* On focus card's shape */
+
+.cards-focus {
+    width: 650px;
+    padding: 15px;
+    flex-direction: row;
+    transition: width 2s, height 2s, position 2s, transform 2s, flex 2s;
+}
+
+/* on focus image section*/
+
+.cards-focus .image {
+    height: 80%;
+    width: 60%;
+    z-index: 1;
+    align-self: center;
+    justify-self: center;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+    animation: image-up-to-down 2s cubic-bezier(0, 0.44, 1, 0.59);
+}
+
+/* on focus Round-bar */
+
+.cards-focus .image .r-bar {
+    height: 350px;
+    width: 350px;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+/* on focus Round-bar svg*/
+
+.cards-focus .image .r-bar svg {
+    stroke-width: 3%;
+    stroke-dasharray: 990;
+    stroke-dashoffset: calc(990 - (990*65)/100);
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+.cards-focus .image .r-bar svg:nth-child(1) {
+    top: 5px;
+    left: 5px;
+    filter: blur(2px);
+    stroke: rgb(var(--bg));
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+.cards-focus .image .r-bar svg circle {
+    height: 100%;
+    width: 100%;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+/* on focus image-section image*/
+
+.cards-focus .image img {
+    height: 360px;
+    width: 60%;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+    animation: size-small-to-big 2s cubic-bezier(0.61, 0.58, 0.79, 1.54);
+}
+
+.cards.cards-focus.card-1 .image img {
+    transform: translate(-45%, -50%);
+    height: 350px;
+    width: auto;
+}
+
+.cards.cards-focus.card-2 .image img {
+    transform: translate(-55%, -50%);
+    height: 330px;
+    width: auto;
+}
+
+.cards.cards-focus.card-3 .image img {
+    transform: translate(-47%, -49%);
+    height: 370px;
+    width: auto;
+}
+
+.cards.cards-focus.card-4 .image img {
+    transform: translate(-43%, -53%);
+    height: 340px;
+    width: auto;
+}
+
+/* on focus Character infomation */
+
+.cards-focus .char-info {
+    height: 70%;
+    padding: 0;
+    width: 40%;
+    justify-content: space-evenly;
+    margin: auto 0px auto 0px;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+    animation: char-info-down-to-up 2s cubic-bezier(0, 0.44, 1, 0.59);
+}
+
+.cards-focus .char-info .name {
+    margin-bottom: 0px;
+    transition: width 2s, height 2s, position 2s, transform 2s;
+}
+
+/* Animation */
+
+/* Loading Scnreen Animation  */
+
+@keyframes loader {
+    from, 0%, 20%, 30% {
+        opacity: 1;
+        transform: translate(0px, 0px);
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        transform: translate(0px, 0px);
+        visibility: hidden;
+    }
+}
+
+@keyframes load-up {
+    from, 60% {
+        opacity: 0;
+        transform: translate(0px, -50px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes load-down {
+    from, 60% {
+        opacity: 0;
+        transform: translate(0px, 50px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0px, 0px);
+    }
+}
+
+/* Image section animation */
+
+@keyframes image-up-to-down {
+    0% {
+        -webkit-transform: translateX(113px) translateY(-120px);
+        width: 298px;
+        height: 45%;
+        width: 100% !important;
+    }
+    100% {
+        -webkit-transform: translateX(0px) translateY(0px);
+        width: 370.8px;
+        height: 80%;
+        width: 60% !important;
+    }
+}
+
+@keyframes image-down-to-up {
+    0% {
+        -webkit-transform: translateX(10px) translateY(115px);
+        width: 370.8px;
+        height: 80% !important;
+    }
+    100% {
+        -webkit-transform: translateX(0px) translateY(0px);
+        width: 298px;
+        height: 45% !important;
+    }
+}
+
+/* Char-info section animation */
+
+@keyframes char-info-up-to-down {
+    from {
+        -webkit-transform: translateX(400px) translateY(-100px);
+        width: 40%;
+        height: 315px !important;
+    }
+    to {
+        -webkit-transform: translateX(0px) translateY(0px);
+        width: 300px;
+        height: 247.5 !important;
+    }
+}
+
+@keyframes char-info-down-to-up {
+    from {
+        -webkit-transform: translateX(-20px) translateY(100px);
+        padding: 15px;
+        width: 300px;
+        height: 247.5 !important;
+    }
+    to {
+        -webkit-transform: translateX(0px) translateY(0px);
+        padding: 0px;
+        width: 40%;
+        height: 70%;
+    }
+}
+
+/* Image-section img size animation */
+
+@keyframes size-small-to-big {
+    0% {
+        height: 170px;
+        width: auto;
+    }
+    100% {
+        height: 360px;
+        width: auto;
+    }
+}
+
+@keyframes size-big-to-small {
+    0% {
+        height: 360px;
+        width: auto;
+    }
+    100% {
+        height: 170px;
+        width: auto;
+    }
+}
+
+/* CTA (linker) animation */
+
+@keyframes loader-cta {
+    from, 60% {
+        transform: translate(-100vw, 0px);
+    }
+}
